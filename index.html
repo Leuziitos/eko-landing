@@ -38,6 +38,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.125rem 2rem;displa
 .nav-link:hover{color:var(--g)}
 .nav-btn{background:var(--g);color:var(--dark);text-decoration:none;padding:.5rem 1.125rem;border-radius:8px;font-weight:700;font-size:14px;transition:all .2s}
 .nav-btn:hover{background:#00E5AD;transform:translateY(-1px)}
+/* hamburger mobile */
+.nav-hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.nav-hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.2s}
+.nav-mobile{display:none;position:fixed;top:64px;left:0;right:0;background:rgba(5,15,10,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:1.5rem 2rem;flex-direction:column;gap:1.25rem;z-index:99}
+.nav-mobile.open{display:flex}
+.nav-mobile a{color:var(--text);text-decoration:none;font-size:16px;font-weight:600}
 
 /* ─ HERO ─ */
 .hero{position:relative;min-height:100vh;display:grid;place-items:center;padding:7rem 2rem 4rem;overflow:hidden}
@@ -47,12 +53,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.125rem 2rem;displa
 .hero-tag{display:inline-flex;align-items:center;gap:8px;background:rgba(0,200,150,.1);border:1px solid var(--border);color:var(--g);padding:.4rem 1rem;border-radius:99px;font-size:13px;font-weight:600;margin-bottom:2rem;animation:up .7s ease both}
 .hero-tag::before{content:"";width:6px;height:6px;background:var(--g);border-radius:50%;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-h1{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(3rem,8vw,6.5rem);font-weight:800;line-height:.95;letter-spacing:-.03em;margin-bottom:1.75rem;animation:up .7s .1s ease both}
+h1{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(2.75rem,6vw,5.5rem);font-weight:800;line-height:1;letter-spacing:-.03em;margin-bottom:1.75rem;animation:up .7s .1s ease both}
 h1 .line1{display:block;color:var(--text)}
 h1 .accent{display:block;color:var(--g);position:relative}
 h1 .accent::after{content:"";position:absolute;bottom:4px;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--g),transparent);opacity:.4}
 .hero-sub{font-size:clamp(1rem,2vw,1.2rem);color:var(--muted);max-width:520px;margin:0 auto 2.5rem;line-height:1.75;animation:up .7s .2s ease both}
-.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:up .7s .3s ease both;margin-bottom:4rem}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:up .7s .3s ease both;margin-bottom:3rem}
 .btn-primary{background:var(--g);color:var(--dark);text-decoration:none;padding:1rem 2rem;border-radius:12px;font-weight:800;font-size:16px;display:inline-flex;align-items:center;gap:8px;transition:all .25s;box-shadow:0 0 40px rgba(0,200,150,.3)}
 .btn-primary:hover{background:#00E5AD;transform:translateY(-2px);box-shadow:0 0 60px rgba(0,200,150,.5)}
 .btn-outline{background:transparent;color:var(--text);text-decoration:none;padding:1rem 2rem;border-radius:12px;font-weight:600;font-size:16px;border:1.5px solid rgba(240,250,245,.15);transition:all .25s}
@@ -145,7 +151,16 @@ footer{padding:2.5rem 2rem;border-top:1px solid var(--border);display:flex;align
 footer p{font-size:13px;color:var(--muted)}
 footer a{color:var(--g);text-decoration:none}
 
-/* ─ ANIM ─ */
+/* ─ FAQ ─ */
+.faq-list{display:grid;gap:.75rem;max-width:720px;margin:0 auto}
+.faq-item{background:var(--dark2);border:1px solid var(--border);border-radius:14px;overflow:hidden}
+.faq-q{padding:1.25rem 1.5rem;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:1rem;color:var(--text);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:.2s}
+.faq-q:hover{color:var(--g)}
+.faq-q::after{content:"＋";font-size:1.25rem;color:var(--g);flex-shrink:0;transition:.2s}
+.faq-item.open .faq-q::after{content:"－"}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease;font-size:15px;color:var(--muted);line-height:1.7;padding:0 1.5rem}
+.faq-item.open .faq-a{max-height:200px;padding:.25rem 1.5rem 1.25rem}
+
 @keyframes up{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
 .reveal.on{opacity:1;transform:translateY(0)}
@@ -158,7 +173,8 @@ footer a{color:var(--g);text-decoration:none}
   .mods{grid-template-columns:1fr 1fr}
   .split,.sobre-grid{grid-template-columns:1fr;gap:3rem}
   .depos{grid-template-columns:1fr}
-  nav .nav-link{display:none}
+  .nav-link{display:none}
+  .nav-hamburger{display:flex}
   .hero-stats{flex-wrap:wrap}
   .hstat{border-right:none;border-bottom:1px solid var(--border)}
   .hstat:last-child{border-bottom:none}
@@ -180,20 +196,28 @@ footer a{color:var(--g);text-decoration:none}
     <a href="#modulos" class="nav-link">Módulos</a>
     <a href="#sobre" class="nav-link">Sobre</a>
     <a href="https://app.ekofinanceira.com.br" class="nav-btn">Entrar →</a>
+    <div class="nav-hamburger" onclick="toggleMenu()" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
   </div>
 </nav>
+<div class="nav-mobile" id="navMobile">
+  <a href="#modulos" onclick="toggleMenu()">📦 Módulos</a>
+  <a href="#sobre" onclick="toggleMenu()">👤 Sobre</a>
+  <a href="https://app.ekofinanceira.com.br" style="color:var(--g)">🚀 Entrar no app</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
   <div class="hero-inner">
-    <div class="hero-tag">🌱 Plataforma 100% gratuita · Sem anúncios</div>
+    <div class="hero-tag">🌱 Mais de 500 pessoas já estão no controle</div>
     <h1>
       <span class="line1">Planeje hoje.</span>
       <span class="accent">Conquiste amanhã.</span>
     </h1>
-    <p class="hero-sub">Hub financeiro completo para organizar suas finanças, quitar dívidas, criar metas e planejar sua aposentadoria — tudo em um só lugar, grátis.</p>
+    <p class="hero-sub">Chega de fim de mês no vermelho sem saber por quê. A Eko reúne tudo que você precisa para organizar suas finanças, quitar dívidas e planejar o futuro — em um só lugar, grátis.</p>
     <div class="hero-ctas">
       <a href="https://app.ekofinanceira.com.br" class="btn-primary">Começar agora — é grátis 🚀</a>
       <a href="#modulos" class="btn-outline">Ver como funciona</a>
@@ -317,7 +341,38 @@ footer a{color:var(--g);text-decoration:none}
     <div class="depo reveal reveal-d1"><div class="stars">★★★★★</div><p class="depo-text">"A simulação de aposentadoria abriu meus olhos. Sempre achei que era cedo para pensar nisso, mas agora sei exatamente quanto guardar."</p><div class="depo-person"><div class="avatar">M</div><div><div class="person-name">Marcos R.</div><div class="person-city">Belo Horizonte, MG</div></div></div></div>
     <div class="depo reveal reveal-d2"><div class="stars">★★★★★</div><p class="depo-text">"As aulas do PEF mudaram minha mentalidade sobre dinheiro. Recomendo para todo mundo que quer começar do zero."</p><div class="depo-person"><div class="avatar">J</div><div><div class="person-name">Juliana F.</div><div class="person-city">Curitiba, PR</div></div></div></div>
   </div>
-  <p style="text-align:center;font-size:12px;color:var(--muted);padding:1.5rem 2rem 3rem;opacity:.5">* Substitua pelos depoimentos reais dos seus usuários</p>
+
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-inner">
+    <div class="pill reveal" style="display:block;text-align:center;margin-bottom:1rem">Dúvidas frequentes</div>
+    <h2 class="sh reveal" style="text-align:center;margin-bottom:.75rem">Ainda tem <em>dúvidas?</em></h2>
+    <p style="text-align:center;color:var(--muted);max-width:480px;margin:0 auto 3rem;font-size:1rem;line-height:1.7" class="reveal">Respondemos as perguntas mais comuns sobre a Eko Financeira.</p>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">É realmente gratuito? Tem alguma pegadinha?</div>
+        <div class="faq-a">Sim, 100% gratuito. Sem cartão de crédito, sem período de teste, sem cobrança surpresa. A Eko Financeira é uma ferramenta criada para democratizar a educação financeira — sem anúncios e sem cobranças.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Meus dados financeiros ficam seguros?</div>
+        <div class="faq-a">Sim. Seus dados são armazenados com segurança no Firebase (Google) e protegidos por autenticação. Nunca compartilhamos suas informações com terceiros.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Precisa instalar alguma coisa?</div>
+        <div class="faq-a">Não! A Eko funciona direto no navegador. Mas você pode instalar como app no celular (PWA) para ter a experiência nativa — sem precisar da App Store.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Funciona para quem está começando do zero?</div>
+        <div class="faq-a">Perfeito para isso! As 12 aulas do PEF foram criadas para quem nunca teve educação financeira. O diagnóstico inicial te mostra exatamente onde você está e por onde começar.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">E para quem já tem dívidas?</div>
+        <div class="faq-a">O módulo "Minhas Dívidas" organiza tudo automaticamente pela prioridade de juros, te mostrando qual quitar primeiro para economizar mais. Muita gente usa a Eko exatamente para sair do vermelho.</div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- CTA FINAL -->
@@ -347,6 +402,18 @@ const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on'); });
 }, {threshold:.12});
 document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+function toggleMenu(){
+  const m = document.getElementById('navMobile');
+  m.classList.toggle('open');
+}
+
+function toggleFaq(el){
+  const item = el.parentElement;
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if(!isOpen) item.classList.add('open');
+}
 </script>
 </body>
 </html>
