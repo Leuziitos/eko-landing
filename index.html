@@ -63,9 +63,8 @@ h1 .accent::after{content:"";position:absolute;bottom:4px;left:0;right:0;height:
 .btn-primary:hover{background:#00E5AD;transform:translateY(-2px);box-shadow:0 0 60px rgba(0,200,150,.5)}
 .btn-outline{background:transparent;color:var(--text);text-decoration:none;padding:1rem 2rem;border-radius:12px;font-weight:600;font-size:16px;border:1.5px solid rgba(240,250,245,.15);transition:all .25s}
 .btn-outline:hover{border-color:var(--g);color:var(--g)}
-.hero-stats{display:flex;gap:0;border:1px solid var(--border);border-radius:16px;overflow:hidden;animation:up .7s .4s ease both;background:rgba(0,200,150,.04)}
-.hstat{padding:1.25rem 2rem;text-align:center;border-right:1px solid var(--border)}
-.hstat:last-child{border-right:none}
+.hero-stats{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:up .7s .4s ease both}
+.hstat{padding:1rem 1.5rem;text-align:center;background:rgba(0,200,150,.06);border:1px solid var(--border);border-radius:14px}
 .hstat-val{font-family:"Bricolage Grotesque",sans-serif;font-size:1.75rem;font-weight:800;color:var(--g);line-height:1}
 .hstat-label{font-size:11px;color:var(--muted);margin-top:4px;font-weight:500;text-transform:uppercase;letter-spacing:.08em}
 
@@ -176,8 +175,6 @@ footer a{color:var(--g);text-decoration:none}
   .nav-link{display:none}
   .nav-hamburger{display:flex}
   .hero-stats{flex-wrap:wrap}
-  .hstat{border-right:none;border-bottom:1px solid var(--border)}
-  .hstat:last-child{border-bottom:none}
 }
 @media(max-width:600px){
   .mods{grid-template-columns:1fr}
